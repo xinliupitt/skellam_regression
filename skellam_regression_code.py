@@ -51,6 +51,7 @@ infos = pd.read_pickle("path/to/testing/independent/variables")
 # z_hat: predicted dependent variable matrix.
 z_hat = []
 for info in infos:
+    # apply weight matrix "results" to calculate dependent variable
     mu1_hat = np.exp(results.x[-2] + np.dot(results.x[:num_features], info))
     mu2_hat = np.exp(results.x[-1] + np.dot(results.x[num_features:2*num_features], info))
     z_hat.append(mu1_hat-mu2_hat)
