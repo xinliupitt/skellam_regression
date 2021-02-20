@@ -1,6 +1,6 @@
 """Implementation of Skellam regression training and prediction processes."""
 
-from numpy import *
+import numpy as np
 from numpy.linalg import norm
 import pandas as pd
 from scipy import stats
@@ -10,9 +10,9 @@ from scipy.optimize import minimize
 
 # z: ground truth matrix with size (number of training records, 1).
 # The value is the difference between bike demand and dock demand.
-z = pd.read_pickle("path/to/training/ground/truth")
+z = pd.read_pickle("data/z_train.pkl")
 # infos: independent variable matrix with size (number of training records, num_features).
-infos = pd.read_pickle("path/to/training/independent/variables")
+infos = pd.read_pickle("data/infos_train.pkl")
 # num_features: number of features.
 num_features = len(infos[0])
 # lambda_reg: regularization shrinking parameter.
@@ -41,12 +41,16 @@ x0 = np.asarray([0.4] * (2*num_features+2))
 
 # results: trained weight matrix
 results = minimize(MLERegression, x0, method="CG",
-                   options={'disp': True, 'maxiter': 2000})
+                   options={'disp': True, 'maxiter': 20})
 
 # Skellam regression prediction/testing process
 
 # infos: independent variable matrix with size (number of testing records, num_features).
-infos = pd.read_pickle("path/to/testing/independent/variables")
+infos = pd.read_pickle("data/infos_test.pkl")
+
+# z_test_truth: ground truth matrix with size (number of testing records, 1).
+# The value is the difference between bike demand and dock demand.
+z_test_truth = pd.read_pickle("data/z_test_truth.pkl")
 
 # z_hat: predicted dependent variable matrix.
 z_hat = []
@@ -55,3 +59,6 @@ for info in infos:
     mu1_hat = np.exp(results.x[-2] + np.dot(results.x[:num_features], info))
     mu2_hat = np.exp(results.x[-1] + np.dot(results.x[num_features:2*num_features], info))
     z_hat.append(mu1_hat-mu2_hat)
+
+print("z prediction:", z_hat)
+print("z ground truth:", z_test_truth)
