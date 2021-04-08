@@ -11,9 +11,11 @@ To the best of our knowledge, we are the first to implement Skellam regression f
 
 ## Skellam regression for Chicago Divvy
 
-Our manuscript focuses on building a Skellam model to predict the total demand of Chicago Divvy bike sharing system. We have the observed, excess and total demand data ready in the folder.
+Our manuscript focuses on building a Skellam model to predict the total demand of Chicago Divvy bike sharing system. We have the observed, excess and total demand data ready in the folder:
+* Folder 1
+* Folder 2
 
-To obtain the weather data as input covariates, please download the dataset from here. Then follow these steps to process weather data:
+To obtain the weather data as input covariates, please subscribe “History Bulk” in Openweathermap: https://home.openweathermap.org/marketplace. Then download the dataset and rename it to "CHI_Weather.csv". Next, use the following scripts to further process the data:
 * run `python3 weather_generator.py` to fetch the data of our year of interest (2018) from the whole weather dataset.
 * run `python3 weather_to_stations.py` to convert the fetched weather data to the format of input covariates for the model.
 
