@@ -23,7 +23,10 @@ Our manuscript focuses on building a Skellam model to predict the total demand o
 * plosone_arrivs_temp_df
 	* `arrivs_UD_dict_*` stores the dock excess demand
 
-To obtain the weather data as input covariates, please subscribe “History Bulk” in Openweathermap: https://home.openweathermap.org/marketplace. Then download the dataset and rename it to "CHI_Weather.csv". Next, use the following scripts to further process the data:
+To obtain the weather data as input covariates,
+* please subscribe “History Bulk” in Openweathermap: https://home.openweathermap.org/marketplace.
+* Download the dataset and rename it to `CHI_Weather.csv`. 
+* Put this dataset file in the folder `plosone_weather`.
 * run `python3 weather_generator.py` to fetch the data of our year of interest (2018) from the whole weather dataset.
 * run `python3 weather_to_stations.py` to convert the fetched weather data to the format of input covariates for the model.
 
