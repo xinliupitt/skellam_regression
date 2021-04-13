@@ -35,3 +35,4 @@ Now we have the all input covariates and outputs ready. We can start the trainin
 * The numbers between `--start_s` and `--end_s` are the station IDs the model will be built for. In the example command, the model will be built for Staton 230 and 231.
 * If `--control` is 0, it means we use the total demand as the dependent variable in training process; if `--control` is 1, we use the observed demand in training
 * If `--peak` is 1, it means we build model for peak hours; if `--peak` is 0, we build model for non-peak hours.
+* Summaries will be printed in the log file `skellam_total_rush.txt`. 
